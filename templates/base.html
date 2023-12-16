@@ -1,0 +1,14 @@
+<!doctype html>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+<nav>
+  <h1>NONPICTION</h1>
+  <ul>
+    <li><a href={{ url_for('photos_index') }}>Photos</a></li>
+    <li><a href={{ url_for('drawings_index') }}>Drawings</a></li>
+    <li><a href={{ url_for('links_index') }}>Links</a></li>
+  </ul>
+</nav>
+<main>
+  {% block content %}{% endblock %}
+</main>

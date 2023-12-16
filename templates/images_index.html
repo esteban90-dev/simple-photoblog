@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for folder in image_folders %}
+    <div><a href={{url_for('show_image_folder', image_folder_path=folder)}}>{{folder}}</a></div>
+  {% endfor %}
+{% endblock %}

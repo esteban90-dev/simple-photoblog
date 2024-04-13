@@ -75,7 +75,7 @@ def index():
   links = get_all_records_from_csv(LINK_DATA_LOCATION)
 
   photo_of_the_month = None
-  photo_of_the_month_files = get_image_files('static/photos/photo-of-the-month')
+  photo_of_the_month_files = get_image_files(PHOTO_OF_THE_MONTH_LOCATION)
 
   if len(photo_of_the_month_files) > 0:
     photo_of_the_month = photo_of_the_month_files[0]
@@ -91,12 +91,12 @@ def index():
 
 @app.route("/photos/<path:folder_path>", methods=['GET'])
 def show_photo_folder(folder_path):
-  folder_record = find_record_from_csv('./data/photos.csv', 'path', folder_path)
+  folder_record = find_record_from_csv(PHOTO_DATA_LOCATION, 'path', folder_path)
 
   if not folder_record:
     abort(404)
 
-  photos = get_image_files('./static/photos/' + folder_record.get('path'))
+  photos = get_image_files(PHOTOS_LOCATION + folder_record.get('path'))
 
   # sort photos
   if int(folder_record.get('reverse_order')) == 1:
@@ -113,12 +113,12 @@ def show_photo_folder(folder_path):
 
 @app.route("/drawings/<path:folder_path>", methods=['GET'])
 def show_drawing_folder(folder_path):
-  folder_record = find_record_from_csv('./data/drawings.csv', 'path', folder_path)
+  folder_record = find_record_from_csv(DRAWING_DATA_LOCATION, 'path', folder_path)
 
   if not folder_record:
     abort(404)
 
-  drawings = get_image_files('./static/drawings/' + folder_record.get('path'))
+  drawings = get_image_files(DRAWINGS_LOCATION + folder_record.get('path'))
 
   # sort drawings
   sorting_key = lambda x: int(x[:x.rindex('.')].split(' ')[-1])

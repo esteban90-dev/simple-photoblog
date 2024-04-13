@@ -1,14 +1,8 @@
 <!doctype html>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <nav>
-  <h1>NONPICTION</h1>
-  <ul>
-    <li><a href={{ url_for('photos_index') }}>Photos</a></li>
-    <li><a href={{ url_for('drawings_index') }}>Drawings</a></li>
-    <li><a href={{ url_for('links_index') }}>Links</a></li>
-  </ul>
+  <h1><a class="link-no-style" href={{url_for('index')}}>NONPICTION</a></h1>
 </nav>
-<main>
-  {% block content %}{% endblock %}
-</main>
+{% block content %}{% endblock %}

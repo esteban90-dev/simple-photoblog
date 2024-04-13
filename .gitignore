@@ -1,3 +1,7 @@
 __pycache__
 .venv
+venv
 static/photos
+static/drawings
+data
+test.py

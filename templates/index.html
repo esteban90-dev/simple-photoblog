@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <main class="container">
+    <div class="column">
+      <h4 class="heading">photos</h4>
+      <ul>
+        {% for photo_folder in data.get('photo_folders') %}
+          {% if photo_folder.get('path') != '' %}
+            <li><a class="link" href={{url_for('show_photo_folder', folder_path=photo_folder.get('path'))}}>{{photo_folder.get('path')}}</a></li>
+          {% else %}
+            <br>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="column">
+      <h4 class="heading">links</h4>
+      {% for link_category in data.get('links') %}
+        <ul>
+          <p class="link-category">{{link_category}}</p>
+          {% for link in data.get('links').get(link_category) %}
+            <li><a class="link" href={{link.get('link')}} target="_blank">{{link.get('description')}}</a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+
+    <div class="column">
+      <img class='photo-of-the-month' src="{{ url_for('static', filename=data.get('photo_of_the_month').replace('static/', '')) }}">
+      <h4 class="heading">drawings</h4>
+      <ul>
+        {% for drawing_folder in data.get('drawing_folders') %}
+          {% if drawing_folder.get('path') != '' %}
+            <li><a class="link" href={{url_for('show_drawing_folder', folder_path=drawing_folder.get('path'))}}>{{drawing_folder.get('path')}}</a></li>
+          {% else %}
+            <br>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
+{% endblock %}

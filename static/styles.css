@@ -2,31 +2,63 @@ body {
   font-family:Arial, Helvetica, sans-serif
 }
 
-nav, main {
-  max-width: 1200px;
-  margin: 0 auto;
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin-top: 0px;
 }
 
-nav {
+.link, .link-no-style {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link-no-style:visited {
+  color: black;
+}
+
+.container {
   display: flex;
-  border-bottom: solid .5px rgb(158, 158, 158);
-  padding-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: inline-block;
+  margin-right: 50px;
+}
+
+.heading {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.link-category {
+  text-decoration: underline;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.photo-of-the-month {
+  display: none;
+  width: 400px;
+  margin-bottom: 16px;
+}
+
+.image_container {
   margin-bottom: 20px;
 }
 
-nav > h1 {
-  margin: 0;
+@media (min-width: 500px) {
+  nav, main {
+    margin-left: 75px;
+  }
 }
 
-nav > ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  list-style-type: none;
-  margin: 0;
+@media (min-width: 900px) {
+  .photo-of-the-month {
+    display: block;
+  }
 }
-
-nav > ul > li {
-  margin-right: 5px;
-}
-

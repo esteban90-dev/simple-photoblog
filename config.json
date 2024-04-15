@@ -1,8 +1,0 @@
-{
-  "DOMAIN_NAME": "nonpiction",
-  "PHOTO_FOLDER": "./static/photos/",
-  "DRAWING_FOLDER": "./static/drawings/",
-  "PHOTO_DATA": "./data/photos.csv",
-  "DRAWING_DATA": "./data/drawings.csv",
-  "LINK_DATA": "./data/links.csv"
-}

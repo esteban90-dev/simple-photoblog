@@ -4,9 +4,9 @@
   <main>
     <p>{{data.get('folder').get('path')}}</p>
     <p>{{data.get('folder').get('description')}}</p>
-    {% for drawing in data.get('drawings') %}
+    {% for image in data.get('images') %}
       <div class='image_container'>
-        <img src="{{ url_for('static', filename=drawing.replace('static/', '')) }}">
+        <img src="{{ url_for('static', filename=image.replace('static/', '')) }}">
       </div>
     {% endfor %}
   </main>

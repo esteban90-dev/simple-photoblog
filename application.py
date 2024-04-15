@@ -102,10 +102,10 @@ def show_photo_folder(folder_path):
 
   data = {
     'folder': folder_record,
-    'photos': photos_sorted
+    'images': photos_sorted
   }
 
-  return render_template('photos.html', data=data)
+  return render_template('images.html', data=data)
 
 @app.route("/drawings/<path:folder_path>", methods=['GET'])
 def show_drawing_folder(folder_path):
@@ -126,7 +126,7 @@ def show_drawing_folder(folder_path):
 
   data = {
     'folder': folder_record,
-    'drawings': drawings_sorted
+    'images': drawings_sorted
   }
 
-  return render_template('drawings.html', data=data)
+  return render_template('images.html', data=data)

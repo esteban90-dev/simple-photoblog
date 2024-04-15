@@ -6,9 +6,8 @@
       <h4 class="heading">photos</h4>
       <ul>
         {% for photo_folder in data.get('photo_folders') %}
-          {% if photo_folder.get('path') != '' %}
-            <li><a class="link" href={{url_for('show_photo_folder', folder_path=photo_folder.get('path'))}}>{{photo_folder.get('path')}}</a></li>
-          {% else %}
+          <li><a class="link" href={{url_for('show_photo_folder', folder_path=photo_folder.get('path'))}}>{{photo_folder.get('path')}}</a></li>
+          {% if photo_folder.get('space_after')|int == 1 %}
             <br>
           {% endif %}
         {% endfor %}
@@ -32,9 +31,8 @@
       <h4 class="heading">drawings</h4>
       <ul>
         {% for drawing_folder in data.get('drawing_folders') %}
-          {% if drawing_folder.get('path') != '' %}
-            <li><a class="link" href={{url_for('show_drawing_folder', folder_path=drawing_folder.get('path'))}}>{{drawing_folder.get('path')}}</a></li>
-          {% else %}
+          <li><a class="link" href={{url_for('show_drawing_folder', folder_path=drawing_folder.get('path'))}}>{{drawing_folder.get('path')}}</a></li>
+          {% if drawing_folder.get('space_after')|int == 1 %}
             <br>
           {% endif %}
         {% endfor %}

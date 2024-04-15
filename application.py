@@ -34,11 +34,7 @@ def find_record_from_csv(file_path, search_column, search_value):
     reader = csv.DictReader(csv_file)
 
     for row in reader:
-      # ignore if every field in the record is blank
-      if all(value == '' for value in row.values()):
-        continue
-
-      elif row.get(search_column) == search_value:
+      if row.get(search_column) == search_value:
         return row
 
   return None

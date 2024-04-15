@@ -3,6 +3,7 @@
 {% block content %}
   <main>
     <p>{{data.get('folder').get('path')}}</p>
+    <p>{{data.get('folder').get('description')}}</p>
     {% for drawing in data.get('drawings') %}
       <div class='image_container'>
         <img src="{{ url_for('static', filename=drawing.replace('static/', '')) }}">

@@ -6,7 +6,7 @@
     <p>{{data.get('folder').get('description')}}</p>
     {% for image in data.get('images') %}
       <div>
-        <img class='images__image' src="{{ url_for('static', filename=image.replace('static/', '')) }}">
+        <img class='images__image' src="{{ url_for('static', filename=image) }}">
       </div>
     {% endfor %}
   </main>

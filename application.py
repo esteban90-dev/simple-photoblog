@@ -46,16 +46,16 @@ def organize_links(data):
 			
 	return data_organized
 
-def get_image_files(path):
+def get_image_files(root_folder, path, prefix):
   # return list of image files for the given path
   import os
 
   images = []
 
-  for file in os.listdir(path):
+  for file in os.listdir(root_folder + path):
     name, ext = os.path.splitext(file)
     if ext in ['.jpg', '.JPG']:
-      images.append(os.path.join(path, file))
+      images.append(os.path.join(prefix, path, file))
 
   return images
 
@@ -66,7 +66,7 @@ def index():
   links = get_all_records_from_csv(app.config['LINK_DATA'])
 
   photo_of_the_month = None
-  photo_of_the_month_files = get_image_files(app.config['PHOTO_OF_THE_MONTH_FOLDER'])
+  photo_of_the_month_files = get_image_files(app.config['PHOTO_FOLDER'], 'photo-of-the-month', 'photos')
 
   if len(photo_of_the_month_files) > 0:
     photo_of_the_month = photo_of_the_month_files[0]
@@ -87,7 +87,7 @@ def show_photo_folder(folder_path):
   if not folder_record:
     abort(404)
 
-  photos = get_image_files(app.config["PHOTO_FOLDER"] + folder_record.get('path'))
+  photos = get_image_files(app.config["PHOTO_FOLDER"], folder_record.get('path'), 'photos')
 
   # sort photos
   if int(folder_record.get('reverse_order')) == 1:
@@ -109,7 +109,7 @@ def show_drawing_folder(folder_path):
   if not folder_record:
     abort(404)
 
-  drawings = get_image_files(app.config['DRAWING_FOLDER'] + folder_record.get('path'))
+  drawings = get_image_files(app.config['DRAWING_FOLDER'], folder_record.get('path'), 'drawings')
 
   # sort drawings
   sorting_key = lambda x: int(x[:x.rindex('.')].split(' ')[-1])

@@ -27,7 +27,9 @@
     </div>
 
     <div class="column">
-      <img class='photo-of-the-month' src="{{ url_for('static', filename=data.get('photo_of_the_month').replace('static/', '')) }}">
+      {% if data.get('photo_of_the_month') %}
+        <img class='photo-of-the-month' src="{{ url_for('static', filename=data.get('photo_of_the_month').replace('static/', '')) }}">
+      {% endif %}
       <h4 class="heading">drawings</h4>
       <ul>
         {% for drawing_folder in data.get('drawing_folders') %}

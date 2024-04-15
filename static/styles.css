@@ -54,10 +54,7 @@ body {
   margin-bottom: 20px;
 }
 
-@media (min-width: 500px) {
-}
-
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
   .index__photo-of-the-month {
     display: block;
   }

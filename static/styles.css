@@ -20,7 +20,7 @@ body {
   color: black;
 }
 
-.index{
+.index {
   display: flex;
   flex-wrap: wrap;
 }
@@ -30,13 +30,19 @@ body {
   margin-right: 50px;
 }
 
-.index__heading {
+.index__heading  {
   margin-top: 0px;
   margin-bottom: 5px;
 }
 
 .index__category {
   text-decoration: underline;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.index__photo-of-the-month-heading {
+  display: none;
   margin-top: 0px;
   margin-bottom: 5px;
 }
@@ -55,7 +61,7 @@ body {
 }
 
 @media (min-width: 1200px) {
-  .index__photo-of-the-month {
+  .index__photo-of-the-month, .index__photo-of-the-month-heading {
     display: block;
   }
 

@@ -28,6 +28,7 @@
 
     <div class="index__column">
       {% if data.get('photo_of_the_month') %}
+        <h4 class="index__photo-of-the-month-heading">photo of the month</h4>
         <img class='index__photo-of-the-month' src="{{ url_for('static', filename=data.get('photo_of_the_month')) }}">
       {% endif %}
       <h4 class="index__heading">drawings</h4>

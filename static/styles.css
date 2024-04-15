@@ -2,40 +2,40 @@ body {
   font-family:Arial, Helvetica, sans-serif
 }
 
-ul {
+.link-list {
   list-style: none;
   padding-left: 0px;
   margin-top: 0px;
 }
 
-.link, .link-no-style {
+.link-list__link, .header__link {
   text-decoration: none;
 }
 
-.link:hover {
+.link-list__link:hover {
   text-decoration: underline;
 }
 
-.link-no-style:visited {
+.header__link:visited {
   color: black;
 }
 
-.container {
+.index-container {
   display: flex;
   flex-wrap: wrap;
 }
 
-.column {
+.index-container__column {
   display: inline-block;
   margin-right: 50px;
 }
 
-.heading {
+.column-heading {
   margin-top: 0px;
   margin-bottom: 5px;
 }
 
-.link-category {
+.link-list__category {
   text-decoration: underline;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -47,12 +47,12 @@ ul {
   margin-bottom: 16px;
 }
 
-.image_container {
+.image-container__image {
   margin-bottom: 20px;
 }
 
 @media (min-width: 500px) {
-  nav, main {
+  .header, .index-container, .image-container {
     margin-left: 75px;
   }
 }

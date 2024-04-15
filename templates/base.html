@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<nav>
-  <h1><a class="link-no-style" href={{url_for('index')}}>{{config.DOMAIN_NAME}}</a></h1>
-</nav>
+<header class="header">
+  <h1><a class="header__link" href={{url_for('index')}}>{{config.DOMAIN_NAME}}</a></h1>
+</header>
 {% block content %}{% endblock %}

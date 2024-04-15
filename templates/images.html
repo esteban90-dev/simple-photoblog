@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <main>
+  <main class="image-container">
     <p>{{data.get('folder').get('path')}}</p>
     <p>{{data.get('folder').get('description')}}</p>
     {% for image in data.get('images') %}
-      <div class='image_container'>
+      <div class='image-container__image'>
         <img src="{{ url_for('static', filename=image.replace('static/', '')) }}">
       </div>
     {% endfor %}

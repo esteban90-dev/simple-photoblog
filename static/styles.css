@@ -2,17 +2,17 @@ body {
   font-family:Arial, Helvetica, sans-serif
 }
 
-.link-list {
+.index__list {
   list-style: none;
   padding-left: 0px;
   margin-top: 0px;
 }
 
-.link-list__link, .header__link {
+.index__link, .header__link {
   text-decoration: none;
 }
 
-.link-list__link:hover {
+.index__link:hover {
   text-decoration: underline;
 }
 
@@ -20,45 +20,55 @@ body {
   color: black;
 }
 
-.index-container {
+.index{
   display: flex;
   flex-wrap: wrap;
 }
 
-.index-container__column {
+.index__column {
   display: inline-block;
   margin-right: 50px;
 }
 
-.column-heading {
+.index__heading {
   margin-top: 0px;
   margin-bottom: 5px;
 }
 
-.link-list__category {
+.index__category {
   text-decoration: underline;
   margin-top: 0px;
   margin-bottom: 5px;
 }
 
-.photo-of-the-month {
+.index__photo-of-the-month {
   display: none;
   width: 400px;
   margin-bottom: 16px;
 }
 
-.image-container__image {
+.images__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   margin-bottom: 20px;
 }
 
 @media (min-width: 500px) {
-  .header, .index-container, .image-container {
-    margin-left: 75px;
-  }
 }
 
 @media (min-width: 900px) {
-  .photo-of-the-month {
+  .index__photo-of-the-month {
     display: block;
+  }
+
+  .header, .index, .images {
+    margin-left: 75px;
+  }
+
+  .images__image {
+    width: auto;
+    height: auto;
+    object-fit: none;
   }
 }

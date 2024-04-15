@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <main class="index-container">
-    <div class="index-container__column">
-      <h4 class="column-heading">photos</h4>
-      <ul class="link-list">
+  <main class="index">
+    <div class="index__column">
+      <h4 class="index__heading">photos</h4>
+      <ul class="index__list">
         {% for photo_folder in data.get('photo_folders') %}
-          <li><a class="link-list__link" href={{url_for('show_photo_folder', folder_path=photo_folder.get('path'))}}>{{photo_folder.get('path')}}</a></li>
+          <li><a class="index__link" href={{url_for('show_photo_folder', folder_path=photo_folder.get('path'))}}>{{photo_folder.get('path')}}</a></li>
           {% if photo_folder.get('space_after')|int == 1 %}
             <br>
           {% endif %}
@@ -14,26 +14,26 @@
       </ul>
     </div>
 
-    <div class="index-container__column">
-      <h4 class="column-heading">links</h4>
+    <div class="index__column">
+      <h4 class="index__heading">links</h4>
       {% for link_category in data.get('links') %}
-        <ul class="link-list">
-          <p class="link-list__category">{{link_category}}</p>
+        <ul class="index__list">
+          <p class="index__category">{{link_category}}</p>
           {% for link in data.get('links').get(link_category) %}
-            <li><a class="link-list__link" href={{link.get('link')}} target="_blank">{{link.get('description')}}</a></li>
+            <li><a class="index__link" href={{link.get('link')}} target="_blank">{{link.get('description')}}</a></li>
           {% endfor %}
         </ul>
       {% endfor %}
     </div>
 
-    <div class="index-container__column">
+    <div class="index__column">
       {% if data.get('photo_of_the_month') %}
-        <img class='photo-of-the-month' src="{{ url_for('static', filename=data.get('photo_of_the_month').replace('static/', '')) }}">
+        <img class='index__photo-of-the-month' src="{{ url_for('static', filename=data.get('photo_of_the_month').replace('static/', '')) }}">
       {% endif %}
-      <h4 class="column-heading">drawings</h4>
-      <ul class="link-list">
+      <h4 class="index__heading">drawings</h4>
+      <ul class="index__list">
         {% for drawing_folder in data.get('drawing_folders') %}
-          <li><a class="link-list__link" href={{url_for('show_drawing_folder', folder_path=drawing_folder.get('path'))}}>{{drawing_folder.get('path')}}</a></li>
+          <li><a class="index__link" href={{url_for('show_drawing_folder', folder_path=drawing_folder.get('path'))}}>{{drawing_folder.get('path')}}</a></li>
           {% if drawing_folder.get('space_after')|int == 1 %}
             <br>
           {% endif %}

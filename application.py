@@ -46,8 +46,8 @@ def organize_links(data):
 			
 	return data_organized
 
-def get_image_files(root_folder, path, prefix):
-  # return list of image files for the given path
+def get_image_files(root_folder, path):
+  # return list of image files for the given root_folder + path
   import os
 
   images = []
@@ -55,7 +55,7 @@ def get_image_files(root_folder, path, prefix):
   for file in os.listdir(root_folder + path):
     name, ext = os.path.splitext(file)
     if ext in ['.jpg', '.JPG']:
-      images.append(os.path.join(prefix, path, file))
+      images.append(os.path.join(root_folder, path, file))
 
   return images
 
@@ -66,10 +66,10 @@ def index():
   links = get_all_records_from_csv(app.config['LINK_DATA'])
 
   photo_of_the_month = None
-  photo_of_the_month_files = get_image_files(app.config['PHOTO_FOLDER'], 'photo-of-the-month', 'photos')
+  photo_of_the_month_files = get_image_files(app.config['PHOTO_FOLDER'], 'photo-of-the-month')
 
   if len(photo_of_the_month_files) > 0:
-    photo_of_the_month = photo_of_the_month_files[0]
+    photo_of_the_month = photo_of_the_month_files[0].replace(app.config['PHOTO_FOLDER'], 'photos/') # shorten full image path as required for the view
 
   data = {
     'photo_folders': photo_folders,
@@ -87,13 +87,14 @@ def show_photo_folder(folder_path):
   if not folder_record:
     abort(404)
 
-  photos = get_image_files(app.config["PHOTO_FOLDER"], folder_record.get('path'), 'photos')
+  photos = get_image_files(app.config["PHOTO_FOLDER"], folder_record.get('path'))
+  photos_corrected_paths = [photo.replace(app.config["PHOTO_FOLDER"], 'photos/') for photo in photos]  # shorten full image paths as required for the view
 
   # sort photos
   if int(folder_record.get('reverse_order')) == 1:
-    photos_sorted = sorted(photos, reverse=True)
+    photos_sorted = sorted(photos_corrected_paths, reverse=True)
   else:
-    photos_sorted = sorted(photos)
+    photos_sorted = sorted(photos_corrected_paths)
 
   data = {
     'folder': folder_record,
@@ -109,15 +110,16 @@ def show_drawing_folder(folder_path):
   if not folder_record:
     abort(404)
 
-  drawings = get_image_files(app.config['DRAWING_FOLDER'], folder_record.get('path'), 'drawings')
+  drawings = get_image_files(app.config['DRAWING_FOLDER'], folder_record.get('path'))
+  drawings_corrected_paths = [drawing.replace(app.config["DRAWING_FOLDER"], 'drawings/') for drawing in drawings]  # shorten full image paths as required for the view
 
   # sort drawings
   sorting_key = lambda x: int(x[:x.rindex('.')].split(' ')[-1])
 
   if int(folder_record.get('reverse_order')) == 1:
-    drawings_sorted = sorted(drawings, key=sorting_key, reverse=True)
+    drawings_sorted = sorted(drawings_corrected_paths, key=sorting_key, reverse=True)
   else:
-    drawings_sorted = sorted(drawings, key=sorting_key)
+    drawings_sorted = sorted(drawings_corrected_paths, key=sorting_key)
 
   data = {
     'folder': folder_record,

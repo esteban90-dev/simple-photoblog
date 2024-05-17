@@ -8,11 +8,11 @@ body {
   margin-top: 0px;
 }
 
-.index__link, .header__link {
+.link, .header__link {
   text-decoration: none;
 }
 
-.index__link:hover {
+.link:hover {
   text-decoration: underline;
 }
 
@@ -51,6 +51,16 @@ body {
   display: none;
   width: 400px;
   margin-bottom: 16px;
+}
+
+.images {
+  display: inline-block;
+}
+
+.images__nextFolder {
+  display: block;
+  text-align: right;
+  margin-bottom: 20px;
 }
 
 .images__image {

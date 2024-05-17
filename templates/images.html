@@ -9,5 +9,8 @@
         <img class='images__image' src="{{ url_for('static', filename=image) }}">
       </div>
     {% endfor %}
+    {% if data.get('next_folder') %}
+      <a class="link images__nextFolder" href={{url_for(data.get('show_folder_method'), folder_path=data.get('next_folder').get('path'))}}>[Next -->]</a>
+    {% endif %}
   </main>
 {% endblock %}

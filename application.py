@@ -34,6 +34,20 @@ def find_record_from_csv(file_path, search_column, search_value):
 
   return None
 
+def get_next_record_from_csv(file_path, search_column, search_value):
+  # return the next record for the supplied search_column/search_value
+  # if record doesnt exist, or a subsequent record doesnt exist, return None
+  records = get_all_records_from_csv(file_path)
+  next_record = None
+
+  for index, record in enumerate(records):
+    if record.get(search_column) == search_value: # find matching record
+      if index + 1 < len(records): # return the next record, if there is one
+        next_record = records[index + 1]
+        break
+
+  return next_record
+
 def organize_links(data):
   # Organize links into a dictionary of categories.
 	data_organized = {}
@@ -87,6 +101,8 @@ def show_photo_folder(folder_path):
   if not folder_record:
     abort(404)
 
+  next_folder_record = get_next_record_from_csv(app.config['PHOTO_DATA'], 'path', folder_path)
+
   photos = get_image_files(app.config["PHOTO_FOLDER"], folder_record.get('path'))
   photos_corrected_paths = [photo.replace(app.config["PHOTO_FOLDER"], 'photos/') for photo in photos]  # shorten full image paths as required for the view
 
@@ -98,6 +114,8 @@ def show_photo_folder(folder_path):
 
   data = {
     'folder': folder_record,
+    'next_folder': next_folder_record,
+    'show_folder_method': 'show_photo_folder',
     'images': photos_sorted
   }
 
@@ -109,6 +127,8 @@ def show_drawing_folder(folder_path):
 
   if not folder_record:
     abort(404)
+
+  next_folder_record = get_next_record_from_csv(app.config['DRAWING_DATA'], 'path', folder_path)
 
   drawings = get_image_files(app.config['DRAWING_FOLDER'], folder_record.get('path'))
   drawings_corrected_paths = [drawing.replace(app.config["DRAWING_FOLDER"], 'drawings/') for drawing in drawings]  # shorten full image paths as required for the view
@@ -123,6 +143,8 @@ def show_drawing_folder(folder_path):
 
   data = {
     'folder': folder_record,
+    'next_folder': next_folder_record,
+    'show_folder_method': 'show_drawing_folder',
     'images': drawings_sorted
   }
 

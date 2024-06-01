@@ -57,9 +57,8 @@ body {
   display: inline-block;
 }
 
-.images__nextFolder {
-  display: block;
-  text-align: right;
+.images_buttonContainer {
+  display: flex;
   margin-bottom: 20px;
 }
 

@@ -9,8 +9,15 @@
         <img class='images__image' src="{{ url_for('static', filename=image) }}">
       </div>
     {% endfor %}
-    {% if data.get('next_folder') %}
-      <a class="link images__nextFolder" href={{url_for(data.get('show_folder_method'), folder_path=data.get('next_folder').get('path'))}}>[Next -->]</a>
+    {% if data.get('previous_folder') or data.get('next_folder') %}
+      <div class="images_buttonContainer">
+        {% if data.get('previous_folder') %}
+          <a class="link" href={{url_for(data.get('show_folder_method'), folder_path=data.get('previous_folder').get('path'))}}>[<-- Previous]</a>
+        {% endif %}
+        {% if data.get('next_folder') %}
+          <a class="link" href={{url_for(data.get('show_folder_method'), folder_path=data.get('next_folder').get('path'))}}>[Next -->]</a>
+        {% endif %}
+      </div>
     {% endif %}
   </main>
 {% endblock %}
